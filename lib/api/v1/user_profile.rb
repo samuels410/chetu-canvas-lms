@@ -34,6 +34,21 @@ module Api::V1::UserProfile
 
     json[:title] = profile.title
     json[:bio] = profile.bio
+    json[:phone] = profile.phone
+    json[:member_type] = profile.member_type
+    json[:geographic_location] = profile.geographic_location
+    json[:speciality_focus] = profile.speciality_focus
+    json[:major] = profile.major
+    json[:race] = profile.race
+    json[:ethnicity] = profile.ethnicity
+    json[:sexual_orientation] = profile.sexual_orientation
+    json[:first_generation] = profile.first_generation
+    json[:second_generation] = profile.second_generation
+    json[:gender] = profile.gender
+    json[:disability_status] = profile.disability_status
+    json[:income_status] = profile.income_status
+    json[:immigration_status] = profile.immigration_status
+    json[:areas_of_interest] = profile.areas_of_interest
     json[:primary_email] = user.email if user.grants_right?(current_user, :read_email_addresses)
     json[:login_id] ||= user.primary_pseudonym.try(:unique_id)
     json[:integration_id] ||= user.primary_pseudonym.try(:integration_id)
