@@ -49,6 +49,9 @@ module Api::V1::UserProfile
     json[:income_status] = profile.income_status
     json[:immigration_status] = profile.immigration_status
     json[:areas_of_interest] = profile.areas_of_interest
+    json[:field_of_specialization] = profile.field_of_specialization
+    json[:background_info_on_the_mentor] = profile.background_info_on_the_mentor
+    json[:project_for_mentees] = profile.project_for_mentees
     json[:primary_email] = user.email if user.grants_right?(current_user, :read_email_addresses)
     json[:login_id] ||= user.primary_pseudonym.try(:unique_id)
     json[:integration_id] ||= user.primary_pseudonym.try(:integration_id)

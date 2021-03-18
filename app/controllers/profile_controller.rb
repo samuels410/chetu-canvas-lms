@@ -438,7 +438,8 @@ class ProfileController < ApplicationController
                                                          :geographic_location, :speciality_focus, :major, :race, :ethnicity,
                                                          :sexual_orientation, :first_generation, :second_generation, :gender,
                                                          :disability_status, :income_status, :immigration_status,
-                                                         :areas_of_interest)
+                                                         :areas_of_interest, :field_of_specialization, :background_info_on_the_mentor,
+                                                         :project_for_mentees)
       user_profile_params.delete(:title) unless @user.user_can_edit_name?
       @profile.attributes = user_profile_params
     end

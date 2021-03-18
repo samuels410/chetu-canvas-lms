@@ -179,7 +179,33 @@
             </select>
           </label>
         </p>
-      <% else %>
+
+        <p class="profileDetails">
+          <h3 class="profileHeader"><%= t('field_of_specialization', "Field of specialization") %></h3>
+          <span class="hide-if-editing"><%= @user_data[:field_of_specialization] %></span>
+          <label class="show-if-editing ic-Label">
+            <input aria-label="<%= t 'Field of Specialization' %>" class="ic-Input" type="text" name="user_profile[field_of_specialization]" value="<%= @user_data[:field_of_specialization] %>">
+          </label>
+        </p>
+
+        <p class="profileDetails">
+          <h3 class="profileHeader"><%= t('background_info_on_the_mentor', "Background info on the mentor") %></h3>
+          <span class="hide-if-editing"><%= @user_data[:background_info_on_the_mentor] %></span>
+          <label class="show-if-editing ic-Label">
+            <textarea class="ic_Input" id="profile_background_info_on_the_mentor" name="user_profile[background_info_on_the_mentor]" aria-labelledby="profile_background_info_on_the_mentor_label"><%= @user_data[:background_info_on_the_mentor] %></textarea>
+          </label>
+        </p>
+
+        <p class="profileDetails">
+          <h3 class="profileHeader"><%= t('project_for_mentees', "Project for mentees") %></h3>
+          <span class="hide-if-editing"><%= @user_data[:project_for_mentees] %></span>
+          <label class="show-if-editing ic-Label">
+            <select class="ic-Input" aria-describedby="hints_language" name="user_profile[project_for_mentees]">
+              <option value="">Select</option>
+            </select>
+          </label>
+        </p>
+    <% else %>
         <h2><%= @user_data[:short_name] %> <% if @user_data[:pronouns] %><i>(<%= @user_data[:pronouns] %>)</i><% end %></h2>
         <p><%= @user_data[:title] %></p>
       <% end %>
@@ -207,13 +233,29 @@
               </p>
             </div>
           <% else %>
-            <p><%= t('#profile.you_have_no_services', "No registered services, you can add some on the *settings* page.", :name => @user_data[:short_name], :wrapper => link_to('\1', settings_profile_path)) %></p>
+          <p class="profileDetails">
+            <h3 class="profileHeader"><%= t('email', "Email") %></h3>
+            <span class="hide-if-editing"><%= @user_data[:primary_email] %></span>
+            <label class="show-if-editing ic-Label">
+              <%= @user_data[:primary_email] %>
+            </label>
+          </p>
+          <p>You can add more emails in the <%= link_to('settings', settings_profile_path) %> page.</p>
+          <p><%= t('#profile.you_have_no_services', "No registered services, You can add some on the *settings* page.", :name => @user_data[:short_name], :wrapper => link_to('\1', settings_profile_path)) %></p>
           <% end %>
       </div>
 
       <div class="hide-if-editing">
         <h3 class="profileHeader"><%= t :ways_to_contact_user, "Contact" %></h3>
         <% if @user_data[:user_services].blank? && @user == @current_user %>
+          <p class="profileDetails">
+            <h3 class="profileHeader"><%= t('email', "Email") %></h3>
+            <span class="hide-if-editing"><%= @user_data[:primary_email] %></span>
+            <label class="show-if-editing ic-Label">
+              <input aria-label="<%= t 'Email' %>" class="ic-Input" type="text" name="user_profile[email]" value="<%= @user_data[:primary_email] %>">
+            </label>
+          </p>
+          <p>You can add more emails in the <%= link_to('settings', settings_profile_path) %> page.</p>
           <p><%= t('#profile.you_have_no_services', "No registered services, you can add some on the *settings* page.", :name => @user_data[:short_name], :wrapper => link_to('\1', settings_profile_path)) %></p>
         <% else %>
           <ul class="social-links">
