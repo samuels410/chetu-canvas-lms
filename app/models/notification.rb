@@ -326,7 +326,7 @@ class Notification < ActiveRecord::Base
     when 'Announcement Created By You'
       FREQ_NEVER
     when 'Calendar'
-      FREQ_NEVER
+      FREQ_IMMEDIATELY
     when 'Student Appointment Signups'
       FREQ_NEVER
     when 'Appointment Availability'
@@ -346,7 +346,7 @@ class Notification < ActiveRecord::Base
     when 'Announcement Reply'
       FREQ_NEVER
     when 'Due Date'
-      FREQ_WEEKLY
+      FREQ_IMMEDIATELY
     when 'Grading'
       FREQ_IMMEDIATELY
     when 'Grading Policies'
