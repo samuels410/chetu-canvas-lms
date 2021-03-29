@@ -24,7 +24,10 @@ module SIS
                     :email, :password, :ssha_password, :integration_id, :row,
                     :short_name, :full_name, :sortable_name, :lineno, :csv, :pronouns,
                     :authentication_provider_id, :sis_batch_id, :existing_user_id,
-                    :existing_integration_id, :existing_canvas_user_id, :root_account_id
+                    :existing_integration_id, :existing_canvas_user_id, :root_account_id,
+                    :phone, :member_type, :geographic_location, :speciality_focus, :major,
+                    :race, :ethnicity, :sexual_orientation, :first_generation, :second_generation,
+                    :gender, :disability_status, :income_status, :immigration_status, :areas_of_interest
 
       def initialize(user_id:, login_id:, status:, first_name: nil, last_name: nil,
                      email: nil, password: nil, ssha_password: nil, pronouns: nil,
@@ -32,7 +35,10 @@ module SIS
                      sortable_name: nil, authentication_provider_id: nil,
                      sis_batch_id: nil, lineno: nil, csv: nil, existing_user_id: nil,
                      existing_integration_id: nil, existing_canvas_user_id: nil,
-                     root_account_id: nil, row: nil)
+                     root_account_id: nil, row: nil, phone: nil, member_type: nil, geographic_location: nil,
+                     speciality_focus: nil, major: nil, race: nil, ethnicity: nil, sexual_orientation: nil,
+                     first_generation: nil, second_generation: nil, gender: nil, disability_status: nil,
+                     income_status: nil, immigration_status: nil, areas_of_interest: nil)
         self.user_id = user_id
         self.login_id = login_id
         self.status = status
@@ -54,6 +60,21 @@ module SIS
         self.existing_integration_id = existing_integration_id
         self.existing_canvas_user_id = existing_canvas_user_id
         self.root_account_id = root_account_id
+        self.phone = phone
+        self.member_type = member_type
+        self.geographic_location = geographic_location
+        self.speciality_focus = speciality_focus
+        self.major = major
+        self.race = race
+        self.ethnicity = ethnicity
+        self.sexual_orientation = sexual_orientation
+        self.first_generation = first_generation
+        self.second_generation = second_generation
+        self.gender = gender
+        self.disability_status = disability_status
+        self.income_status = income_status
+        self.immigration_status = immigration_status
+        self.areas_of_interest = areas_of_interest
         self.row = row
       end
 

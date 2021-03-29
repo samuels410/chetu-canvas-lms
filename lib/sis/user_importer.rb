@@ -406,6 +406,71 @@ module SIS
           elsif @batch && pseudo.sis_batch_id != @batch.id
             @pseudos_to_set_sis_batch_ids << pseudo.id
           end
+
+          @profile = user.profile
+          if user_row.phone.present? || user_row.member_type.present? || user_row.geographic_location.present? || user_row.speciality_focus.present? || user_row.major.present? || user_row.race.present? || user_row.ethnicity.present? || user_row.sexual_orientation.present? || user_row.first_generation.present? || user_row.second_generation.present? || user_row.gender.present? || user_row.disability_status.present? || user_row.income_status.present? || user_row.immigration_status.present? || user_row.areas_of_interest.present?
+
+            if user_row.phone.present?
+              @profile.phone = user_row.phone
+            end
+
+            if user_row.member_type.present?
+              @profile.member_type = user_row.member_type
+            end
+
+            if user_row.geographic_location.present?
+              @profile.geographic_location = user_row.geographic_location
+            end
+
+            if user_row.speciality_focus.present?
+              @profile.speciality_focus = user_row.speciality_focus
+            end
+
+            if user_row.major.present?
+              @profile.major = user_row.major
+            end
+
+            if user_row.race.present?
+              @profile.race = user_row.race
+            end
+
+            if user_row.ethnicity.present?
+              @profile.ethnicity = user_row.ethnicity
+            end
+
+            if user_row.sexual_orientation.present?
+              @profile.sexual_orientation = user_row.sexual_orientation
+            end
+
+            if user_row.first_generation.present?
+              @profile.first_generation = user_row.first_generation
+            end
+
+            if user_row.second_generation.present?
+              @profile.second_generation = user_row.second_generation
+            end
+
+            if user_row.gender.present?
+              @profile.gender = user_row.gender
+            end
+
+            if user_row.disability_status.present?
+              @profile.disability_status = user_row.disability_status
+            end
+
+            if user_row.income_status.present?
+              @profile.income_status = user_row.income_status
+            end
+
+            if user_row.immigration_status.present?
+              @profile.immigration_status = user_row.immigration_status
+            end
+
+            if user_row.areas_of_interest.present?
+              @profile.areas_of_interest = user_row.areas_of_interest
+            end
+            @profile.save!
+          end
           maybe_write_roll_back_data
 
           @success_count += 1

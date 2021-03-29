@@ -68,7 +68,22 @@ module SIS
           lineno: row['lineno'],
           csv: csv,
           row: row,
-          authentication_provider_id: row['authentication_provider_id']
+          authentication_provider_id: row['authentication_provider_id'],
+          phone: row['phone'],
+          member_type: row['member_type'],
+          geographic_location: row['geographic_location'],
+          speciality_focus: row['speciality_focus'],
+          major: row['major'],
+          race: row['race'],
+          ethnicity: row['ethnicity'],
+          sexual_orientation: row['sexual_orientation'],
+          first_generation: row['first_generation'],
+          second_generation: row['second_generation'],
+          gender: row['gender'],
+          disability_status: row['disability_status'],
+          income_status: row['income_status'],
+          immigration_status: row['immigration_status'],
+          areas_of_interest: row['areas_of_interest'],
         )
       end
     end
