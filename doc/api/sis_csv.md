@@ -282,6 +282,111 @@ still be provided.</td>
 <td></td>
 <td>active, deleted</td>
 </tr>
+<tr>
+<td>phone</td>
+<td>text</td>
+<td></td>
+<td></td>
+<td>Display phone of the user.</td>
+</tr>
+<tr>
+<td>member_type</td>
+<td>text</td>
+<td></td>
+<td></td>
+<td>Display member_type of the user.</td>
+</tr>
+<tr>
+<td>geographic_location</td>
+<td>text</td>
+<td></td>
+<td></td>
+<td>Display geographic_location of the user.</td>
+</tr>
+<tr>
+<td>speciality_focus</td>
+<td>text</td>
+<td></td>
+<td></td>
+<td>Display speciality_focus of the user.</td>
+</tr>
+<tr>
+<td>major</td>
+<td>text</td>
+<td></td>
+<td></td>
+<td>Display major of the user.</td>
+</tr>
+<tr>
+<td>race</td>
+<td>text</td>
+<td></td>
+<td></td>
+<td>Display race of the user.</td>
+</tr>
+<tr>
+<td>ethnicity</td>
+<td>text</td>
+<td></td>
+<td></td>
+<td>Display ethnicity of the user.</td>
+</tr>
+<tr>
+<td>sexual_orientation</td>
+<td>text</td>
+<td></td>
+<td></td>
+<td>Display sexual_orientation of the user.</td>
+</tr>
+<tr>
+<td>first_generation</td>
+<td>text</td>
+<td></td>
+<td></td>
+<td>Display first_generation of the user.</td>
+</tr>
+<tr>
+<td>second_generation</td>
+<td>text</td>
+<td></td>
+<td></td>
+<td>Display second_generation of the user.</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>text</td>
+<td></td>
+<td></td>
+<td>Display gender of the user.</td>
+</tr>
+<tr>
+<td>disability_status</td>
+<td>text</td>
+<td></td>
+<td></td>
+<td>Display disability_status of the user.</td>
+</tr>
+<tr>
+<td>income_status</td>
+<td>text</td>
+<td></td>
+<td></td>
+<td>Display income_status of the user.</td>
+</tr>
+<tr>
+<td>immigration_status</td>
+<td>text</td>
+<td></td>
+<td></td>
+<td>Display immigration_status of the user.</td>
+</tr>
+<tr>
+<td>areas_of_interest</td>
+<td>text</td>
+<td></td>
+<td></td>
+<td>Display areas_of_interest of the user.</td>
+</tr>
 </table>
 
 <p>At least one form of name should be supplied. If a user is being created and no name is given,
@@ -296,10 +401,10 @@ student to be able to log in but just not participate, leave the student
 
 Sample:
 
-<pre>user_id,login_id,authentication_provider_id,password,first_name,last_name,short_name,email,status
-01103,bsmith01,,,Bob,Smith,Bobby Smith,bob.smith@myschool.edu,active
-13834,jdoe03,google,,John,Doe,,john.doe@myschool.edu,active
-13aa3,psue01,7,,Peggy,Sue,,peggy.sue@myschool.edu,active
+<pre>user_id,login_id,authentication_provider_id,password,first_name,last_name,short_name,email,status,phone,member_type,geographic_location,speciality_focus,major,race,ethnicity,sexual_orientation,first_generation,second_generation,gender,disability_status,income_status,immigration_status,areas_of_interest
+01103,bsmith01,,,Bob,Smith,Bobby Smith,bob.smith@myschool.edu,active,9876543210,student,geographic_location1,speciality_focus1,major1,race1,ethnicity1,sexual_orientation1,first_generation1,second_generation1,male,disability_status1,income_status1,immigration_status1,areas_of_interest
+13834,jdoe03,google,,John,Doe,,john.doe@myschool.edu,active,,,,,,,,,,,,,,,,
+13aa3,psue01,7,,Peggy,Sue,,peggy.sue@myschool.edu,active,,,,,,,,,,,,,,,,
 </pre>
 
 accounts.csv
