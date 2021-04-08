@@ -156,7 +156,6 @@ class ProfileController < ApplicationController
       settings
       return
     end
-
     @user ||= @current_user
     set_active_tab "profile"
     @context = @user.profile if @user == @current_user
@@ -439,7 +438,7 @@ class ProfileController < ApplicationController
                                                          :sexual_orientation, :first_generation, :second_generation, :gender,
                                                          :disability_status, :income_status, :immigration_status,
                                                          :areas_of_interest, :field_of_specialization, :background_info_on_the_mentor,
-                                                         :project_for_mentees)
+                                                         :project_for_mentees, :important_to_me, :about_me, :professional_interests_experiences, :professional_goal, :permanent_address)
       user_profile_params.delete(:title) unless @user.user_can_edit_name?
       @profile.attributes = user_profile_params
     end

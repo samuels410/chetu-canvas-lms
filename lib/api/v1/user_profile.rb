@@ -49,6 +49,11 @@ module Api::V1::UserProfile
     json[:income_status] = profile.income_status
     json[:immigration_status] = profile.immigration_status
     json[:areas_of_interest] = profile.areas_of_interest
+    json[:important_to_me] = profile.important_to_me
+    json[:about_me] = profile.about_me
+    json[:professional_interests_experiences] = profile.professional_interests_experiences
+    json[:professional_goal] = profile.professional_goal
+    json[:permanent_address] = profile.permanent_address
     json[:field_of_specialization] = profile.field_of_specialization
     json[:background_info_on_the_mentor] = profile.background_info_on_the_mentor
     json[:project_for_mentees] = profile.project_for_mentees

@@ -181,6 +181,41 @@
         </p>
 
         <p class="profileDetails">
+          <h3 class="profileHeader"><%= t('important_to_me', "Important To Me") %></h3>
+          <span class="hide-if-editing"><%= @user_data[:important_to_me] %></span>
+          <label class="show-if-editing ic-Label">
+            <input aria-label="<%= t 'Important To Me' %>" class="ic-Input" type="text" name="user_profile[important_to_me]" value="<%= @user_data[:important_to_me] %>">
+          </label>
+        </p>
+        <p class="profileDetails">
+          <h3 class="profileHeader"><%= t('about_me', "About Me") %></h3>
+          <span class="hide-if-editing"><%= @user_data[:about_me] %></span>
+          <label class="show-if-editing ic-Label">
+            <textarea class="ic_Input" id="about_me" name="user_profile[about_me]" aria-labelledby="profile_background_info_on_the_mentor_label"><%= @user_data[:about_me] %></textarea>
+          </label>
+        </p>
+        <p class="profileDetails">
+          <h3 class="profileHeader"><%= t('professional_interests_experiences', "Professional Interests And Experiences") %></h3>
+          <span class="hide-if-editing"><%= @user_data[:professional_interests_experiences] %></span>
+          <label class="show-if-editing ic-Label">
+            <input aria-label="<%= t 'Professional Interests And Experiences' %>" class="ic-Input" type="text" name="user_profile[professional_interests_experiences]" value="<%= @user_data[:professional_interests_experiences] %>">
+          </label>
+        </p>
+        <p class="profileDetails">
+          <h3 class="profileHeader"><%= t('professional_goal', "Professional Goal") %></h3>
+          <span class="hide-if-editing"><%= @user_data[:professional_goal] %></span>
+          <label class="show-if-editing ic-Label">
+            <input aria-label="<%= t 'Professional Goal' %>" class="ic-Input" type="text" name="user_profile[professional_goal]" value="<%= @user_data[:professional_goal] %>">
+          </label>
+        </p>
+        <p class="profileDetails">
+          <h3 class="profileHeader"><%= t('permanent_address', "Parmanent Address") %></h3>
+          <span class="hide-if-editing"><%= @user_data[:permanent_address] %></span>
+          <label class="show-if-editing ic-Label">
+            <textarea class="ic_Input" id="permanent_address" name="user_profile[permanent_address]" aria-labelledby="profile_background_info_on_the_mentor_label"><%= @user_data[:permanent_address] %></textarea>
+          </label>
+        </p>
+        <p class="profileDetails">
           <h3 class="profileHeader"><%= t('field_of_specialization', "Field of specialization") %></h3>
           <span class="hide-if-editing"><%= @user_data[:field_of_specialization] %></span>
           <label class="show-if-editing ic-Label">
@@ -395,7 +430,51 @@
             </label>
           </p>
         </div>
-
+        <div class="hide-if-editing">
+          <h3 class="profileHeader"><%= t('important_to_me', "Important To Me") %></h3>
+          <p class="profileDetails">
+            <span class="hide-if-editing"><%= @user_data[:important_to_me] %></span>
+            <label class="show-if-editing ic-Label">
+              <input aria-label="<%= t 'Important To Me' %>" class="ic-Input" type="text" name="user_profile[important_to_me]" value="<%= @user_data[:important_to_me] %>">
+            </label>
+          </p>
+        </div>
+        <div class="hide-if-editing">
+          <h3 class="profileHeader"><%= t('about_me', "About Me") %></h3>
+          <p class="profileDetails">
+            <span class="hide-if-editing"><%= @user_data[:about_me] %></span>
+            <label class="show-if-editing ic-Label">
+              <textarea class="ic_Input" id="about_me" name="user_profile[about_me]" aria-labelledby="profile_background_info_on_the_mentor_label"><%= @user_data[:about_me] %></textarea>
+            </label>
+          </p>
+        </div>
+        <div class="hide-if-editing">
+          <h3 class="profileHeader"><%= t('professional_interests_experiences', "Professional Interests And Experiences") %></h3>
+          <p class="profileDetails">
+            <span class="hide-if-editing"><%= @user_data[:professional_interests_experiences] %></span>
+            <label class="show-if-editing ic-Label">
+              <input aria-label="<%= t 'Professional Interests And Experiences' %>" class="ic-Input" type="text" name="user_profile[professional_interests_experiences]" value="<%= @user_data[:professional_interests_experiences] %>">
+            </label>
+          </p>
+        </div>
+        <div class="hide-if-editing">
+          <h3 class="profileHeader"><%= t('professional_goal', "Professional Goal") %></h3>
+          <p class="profileDetails">
+            <span class="hide-if-editing"><%= @user_data[:professional_goal] %></span>
+            <label class="show-if-editing ic-Label">
+              <input aria-label="<%= t 'Professional Goal' %>" class="ic-Input" type="text" name="user_profile[professional_goal]" value="<%= @user_data[:professional_goal] %>">
+            </label>
+          </p>
+        </div>
+        <div class="hide-if-editing">
+          <h3 class="profileHeader"><%= t('permanent_address', "Parmanent Address") %></h3>
+          <p class="profileDetails">
+            <span class="hide-if-editing"><%= @user_data[:permanent_address] %></span>
+            <label class="show-if-editing ic-Label">
+              <textarea class="ic_Input" id="permanent_address" name="user_profile[permanent_address]" aria-labelledby="profile_background_info_on_the_mentor_label"><%= @user_data[:permanent_address] %></textarea>
+            </label>
+          </p>
+        </div>
         <div class="hide-if-editing">
           <h3 class="profileHeader"><%= t('field_of_specialization', "Field of specialization") %></h3>
           <p class="profileDetails">
