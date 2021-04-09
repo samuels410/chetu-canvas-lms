@@ -54,6 +54,8 @@ module Api::V1::UserProfile
     json[:professional_interests_experiences] = profile.professional_interests_experiences
     json[:professional_goal] = profile.professional_goal
     json[:permanent_address] = profile.permanent_address
+    json[:strength_weakness] = profile.strength_weakness
+    json[:affiliation] = profile.affiliation
     json[:field_of_specialization] = profile.field_of_specialization
     json[:background_info_on_the_mentor] = profile.background_info_on_the_mentor
     json[:project_for_mentees] = profile.project_for_mentees
