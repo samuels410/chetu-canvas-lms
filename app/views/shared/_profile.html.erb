@@ -295,277 +295,503 @@
       </div>
 
       <% if !@user_data[:can_edit_name] %>
-        <% if @user_data[:common_contexts].first[:roles].first == "Teacher" %>
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('phone', "Phone") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:phone] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Phone' %>" class="ic-Input" type="text" name="user_profile[phone]" value="<%= @user_data[:phone] %>">
-              </label>
-            </p>
-          </div>
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('important_to_me', "Important To Me") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:important_to_me] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Important To Me' %>" class="ic-Input" type="text" name="user_profile[important_to_me]" value="<%= @user_data[:important_to_me] %>">
-              </label>
-            </p>
-          </div>
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('professional_interests_experiences', "Professional Interests And Experiences") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:professional_interests_experiences] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Professional Interests And Experiences' %>" class="ic-Input" type="text" name="user_profile[professional_interests_experiences]" value="<%= @user_data[:professional_interests_experiences] %>">
-              </label>
-            </p>
-          </div>
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('strength_weakness', "Strength & Weaknesses") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:strength_weakness] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Strength & Weaknesses' %>" class="ic-Input" type="text" name="user_profile[strength_weakness]" value="<%= @user_data[:strength_weakness] %>">
-              </label>
-            </p>
-          </div>
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('affiliation', "Affiliation") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:affiliation] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Affiliation' %>" class="ic-Input" type="text" name="user_profile[affiliation]" value="<%= @user_data[:affiliation] %>">
-              </label>
-            </p>
-          </div>
-        <% else %>
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('phone', "Phone") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:phone] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Phone' %>" class="ic-Input" type="text" name="user_profile[phone]" value="<%= @user_data[:phone] %>">
-              </label>
-            </p>
-          </div>
-
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('member_type', "Member type") %></h3>
+        <% if @user_data[:common_contexts].present? %>
+          <% if @user_data[:common_contexts].first[:roles].first == "Teacher" %>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('phone', "Phone") %></h3>
               <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:member_type] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Member type' %>" class="ic-Input" type="text" name="user_profile[member_type]" value="<%= @user_data[:member_type] %>">
-              </label>
+                <span class="hide-if-editing"><%= @user_data[:phone] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Phone' %>" class="ic-Input" type="text" name="user_profile[phone]" value="<%= @user_data[:phone] %>">
+                </label>
               </p>
-          </div>
+            </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('important_to_me', "Important To Me") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:important_to_me] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Important To Me' %>" class="ic-Input" type="text" name="user_profile[important_to_me]" value="<%= @user_data[:important_to_me] %>">
+                </label>
+              </p>
+            </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('professional_interests_experiences', "Professional Interests And Experiences") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:professional_interests_experiences] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Professional Interests And Experiences' %>" class="ic-Input" type="text" name="user_profile[professional_interests_experiences]" value="<%= @user_data[:professional_interests_experiences] %>">
+                </label>
+              </p>
+            </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('strength_weakness', "Strength & Weaknesses") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:strength_weakness] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Strength & Weaknesses' %>" class="ic-Input" type="text" name="user_profile[strength_weakness]" value="<%= @user_data[:strength_weakness] %>">
+                </label>
+              </p>
+            </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('affiliation', "Affiliation") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:affiliation] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Affiliation' %>" class="ic-Input" type="text" name="user_profile[affiliation]" value="<%= @user_data[:affiliation] %>">
+                </label>
+              </p>
+            </div>
+          <% else %>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('phone', "Phone") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:phone] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Phone' %>" class="ic-Input" type="text" name="user_profile[phone]" value="<%= @user_data[:phone] %>">
+                </label>
+              </p>
+            </div>
 
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('geographic_location', "Geographic location") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:geographic_location] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Geographic location' %>" class="ic-Input" type="text" name="user_profile[geographic_location]" value="<%= @user_data[:geographic_location] %>">
-              </label>
-            </p>
-          </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('member_type', "Member type") %></h3>
+                <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:member_type] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Member type' %>" class="ic-Input" type="text" name="user_profile[member_type]" value="<%= @user_data[:member_type] %>">
+                </label>
+                </p>
+            </div>
 
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('speciality_focus', "Speciality focus") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:speciality_focus] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Speciality focus' %>" class="ic-Input" type="text" name="user_profile[speciality_focus]" value="<%= @user_data[:speciality_focus] %>">
-              </label>
-            </p>
-          </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('geographic_location', "Geographic location") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:geographic_location] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Geographic location' %>" class="ic-Input" type="text" name="user_profile[geographic_location]" value="<%= @user_data[:geographic_location] %>">
+                </label>
+              </p>
+            </div>
 
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('majore', "Major") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:major] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Major' %>" class="ic-Input" type="text" name="user_profile[major]" value="<%= @user_data[:major] %>">
-              </label>
-            </p>
-          </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('speciality_focus', "Speciality focus") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:speciality_focus] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Speciality focus' %>" class="ic-Input" type="text" name="user_profile[speciality_focus]" value="<%= @user_data[:speciality_focus] %>">
+                </label>
+              </p>
+            </div>
 
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('racee', "Race") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:race] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Race' %>" class="ic-Input" type="text" name="user_profile[race]" value="<%= @user_data[:race] %>">
-              </label>
-            </p>
-          </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('majore', "Major") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:major] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Major' %>" class="ic-Input" type="text" name="user_profile[major]" value="<%= @user_data[:major] %>">
+                </label>
+              </p>
+            </div>
 
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('ethnicity', "Ethnicity") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:ethnicity] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Ethnicity' %>" class="ic-Input" type="text" name="user_profile[ethnicity]" value="<%= @user_data[:ethnicity] %>">
-              </label>
-            </p>
-          </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('racee', "Race") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:race] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Race' %>" class="ic-Input" type="text" name="user_profile[race]" value="<%= @user_data[:race] %>">
+                </label>
+              </p>
+            </div>
 
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('sexual_orientatione', "Sexual orientation") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:sexual_orientation] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Sexual orientation' %>" class="ic-Input" type="text" name="user_profile[sexual_orientation]" value="<%= @user_data[:sexual_orientation] %>">
-              </label>
-            </p>
-          </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('ethnicity', "Ethnicity") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:ethnicity] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Ethnicity' %>" class="ic-Input" type="text" name="user_profile[ethnicity]" value="<%= @user_data[:ethnicity] %>">
+                </label>
+              </p>
+            </div>
 
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('first_generatione', "First generation") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:first_generation] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'First generation' %>" class="ic-Input" type="text" name="user_profile[first_generation]" value="<%= @user_data[:first_generation] %>">
-              </label>
-            </p>
-          </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('sexual_orientatione', "Sexual orientation") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:sexual_orientation] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Sexual orientation' %>" class="ic-Input" type="text" name="user_profile[sexual_orientation]" value="<%= @user_data[:sexual_orientation] %>">
+                </label>
+              </p>
+            </div>
 
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('second_generation', "Second generation") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:second_generation] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Second generation' %>" class="ic-Input" type="text" name="user_profile[second_generation]" value="<%= @user_data[:second_generation] %>">
-              </label>
-            </p>
-          </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('first_generatione', "First generation") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:first_generation] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'First generation' %>" class="ic-Input" type="text" name="user_profile[first_generation]" value="<%= @user_data[:first_generation] %>">
+                </label>
+              </p>
+            </div>
 
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('gender', "Gender") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:gender] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Gender' %>" class="ic-Input" type="text" name="user_profile[gender]" value="<%= @user_data[:gender] %>">
-              </label>
-            </p>
-          </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('second_generation', "Second generation") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:second_generation] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Second generation' %>" class="ic-Input" type="text" name="user_profile[second_generation]" value="<%= @user_data[:second_generation] %>">
+                </label>
+              </p>
+            </div>
 
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('disability_statuse', "Disability status") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:disability_status] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Disability status' %>" class="ic-Input" type="text" name="user_profile[disability_status]" value="<%= @user_data[:disability_status] %>">
-              </label>
-            </p>
-          </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('gender', "Gender") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:gender] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Gender' %>" class="ic-Input" type="text" name="user_profile[gender]" value="<%= @user_data[:gender] %>">
+                </label>
+              </p>
+            </div>
 
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('income_status', "Income status") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:income_status] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Income status' %>" class="ic-Input" type="text" name="user_profile[income_status]" value="<%= @user_data[:income_status] %>">
-              </label>
-            </p>
-          </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('disability_statuse', "Disability status") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:disability_status] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Disability status' %>" class="ic-Input" type="text" name="user_profile[disability_status]" value="<%= @user_data[:disability_status] %>">
+                </label>
+              </p>
+            </div>
 
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('immigration_status', "Immigration status") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:immigration_status] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Immigration status' %>" class="ic-Input" type="text" name="user_profile[immigration_status]" value="<%= @user_data[:immigration_status] %>">
-              </label>
-            </p>
-          </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('income_status', "Income status") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:income_status] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Income status' %>" class="ic-Input" type="text" name="user_profile[income_status]" value="<%= @user_data[:income_status] %>">
+                </label>
+              </p>
+            </div>
 
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('areas_of_interest', "Areas of interest") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:areas_of_interest] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Areas of interest' %>" class="ic-Input" type="text" name="user_profile[areas_of_interest]" value="<%= @user_data[:areas_of_interest] %>">
-              </label>
-            </p>
-          </div>
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('important_to_me', "Important To Me") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:important_to_me] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Important To Me' %>" class="ic-Input" type="text" name="user_profile[important_to_me]" value="<%= @user_data[:important_to_me] %>">
-              </label>
-            </p>
-          </div>
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('about_me', "About Me") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:about_me] %></span>
-              <label class="show-if-editing ic-Label">
-                <textarea class="ic_Input" id="about_me" name="user_profile[about_me]" aria-labelledby="profile_background_info_on_the_mentor_label"><%= @user_data[:about_me] %></textarea>
-              </label>
-            </p>
-          </div>
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('professional_interests_experiences', "Professional Interests And Experiences") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:professional_interests_experiences] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Professional Interests And Experiences' %>" class="ic-Input" type="text" name="user_profile[professional_interests_experiences]" value="<%= @user_data[:professional_interests_experiences] %>">
-              </label>
-            </p>
-          </div>
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('professional_goal', "Professional Goal") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:professional_goal] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Professional Goal' %>" class="ic-Input" type="text" name="user_profile[professional_goal]" value="<%= @user_data[:professional_goal] %>">
-              </label>
-            </p>
-          </div>
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('permanent_address', "Parmanent Address") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:permanent_address] %></span>
-              <label class="show-if-editing ic-Label">
-                <textarea class="ic_Input" id="permanent_address" name="user_profile[permanent_address]" aria-labelledby="profile_background_info_on_the_mentor_label"><%= @user_data[:permanent_address] %></textarea>
-              </label>
-            </p>
-          </div>
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('field_of_specialization', "Field of specialization") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:field_of_specialization] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Field of specialization' %>" class="ic-Input" type="text" name="user_profile[field_of_specialization]" value="<%= @user_data[:field_of_specialization] %>">
-              </label>
-            </p>
-          </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('immigration_status', "Immigration status") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:immigration_status] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Immigration status' %>" class="ic-Input" type="text" name="user_profile[immigration_status]" value="<%= @user_data[:immigration_status] %>">
+                </label>
+              </p>
+            </div>
 
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('background_info_on_the_mentor', "Background info on the mentor") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:background_info_on_the_mentor] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Background info on the mentor' %>" class="ic-Input" type="text" name="user_profile[background_info_on_the_mentor]" value="<%= @user_data[:background_info_on_the_mentor] %>">
-              </label>
-            </p>
-          </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('areas_of_interest', "Areas of interest") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:areas_of_interest] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Areas of interest' %>" class="ic-Input" type="text" name="user_profile[areas_of_interest]" value="<%= @user_data[:areas_of_interest] %>">
+                </label>
+              </p>
+            </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('important_to_me', "Important To Me") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:important_to_me] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Important To Me' %>" class="ic-Input" type="text" name="user_profile[important_to_me]" value="<%= @user_data[:important_to_me] %>">
+                </label>
+              </p>
+            </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('about_me', "About Me") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:about_me] %></span>
+                <label class="show-if-editing ic-Label">
+                  <textarea class="ic_Input" id="about_me" name="user_profile[about_me]" aria-labelledby="profile_background_info_on_the_mentor_label"><%= @user_data[:about_me] %></textarea>
+                </label>
+              </p>
+            </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('professional_interests_experiences', "Professional Interests And Experiences") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:professional_interests_experiences] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Professional Interests And Experiences' %>" class="ic-Input" type="text" name="user_profile[professional_interests_experiences]" value="<%= @user_data[:professional_interests_experiences] %>">
+                </label>
+              </p>
+            </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('professional_goal', "Professional Goal") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:professional_goal] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Professional Goal' %>" class="ic-Input" type="text" name="user_profile[professional_goal]" value="<%= @user_data[:professional_goal] %>">
+                </label>
+              </p>
+            </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('permanent_address', "Parmanent Address") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:permanent_address] %></span>
+                <label class="show-if-editing ic-Label">
+                  <textarea class="ic_Input" id="permanent_address" name="user_profile[permanent_address]" aria-labelledby="profile_background_info_on_the_mentor_label"><%= @user_data[:permanent_address] %></textarea>
+                </label>
+              </p>
+            </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('field_of_specialization', "Field of specialization") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:field_of_specialization] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Field of specialization' %>" class="ic-Input" type="text" name="user_profile[field_of_specialization]" value="<%= @user_data[:field_of_specialization] %>">
+                </label>
+              </p>
+            </div>
 
-          <div class="hide-if-editing">
-            <h3 class="profileHeader"><%= t('project_for_mentees', "Project for mentees") %></h3>
-            <p class="profileDetails">
-              <span class="hide-if-editing"><%= @user_data[:project_for_mentees] %></span>
-              <label class="show-if-editing ic-Label">
-                <input aria-label="<%= t 'Project for mentees' %>" class="ic-Input" type="text" name="user_profile[project_for_mentees]" value="<%= @user_data[:project_for_mentees] %>">
-              </label>
-            </p>
-          </div>
-        <% end %>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('background_info_on_the_mentor', "Background info on the mentor") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:background_info_on_the_mentor] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Background info on the mentor' %>" class="ic-Input" type="text" name="user_profile[background_info_on_the_mentor]" value="<%= @user_data[:background_info_on_the_mentor] %>">
+                </label>
+              </p>
+            </div>
+
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('project_for_mentees', "Project for mentees") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:project_for_mentees] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Project for mentees' %>" class="ic-Input" type="text" name="user_profile[project_for_mentees]" value="<%= @user_data[:project_for_mentees] %>">
+                </label>
+              </p>
+            </div>
+          <% end %>
+        <% else %>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('phone', "Phone") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:phone] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Phone' %>" class="ic-Input" type="text" name="user_profile[phone]" value="<%= @user_data[:phone] %>">
+                </label>
+              </p>
+            </div>
+
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('member_type', "Member type") %></h3>
+                <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:member_type] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Member type' %>" class="ic-Input" type="text" name="user_profile[member_type]" value="<%= @user_data[:member_type] %>">
+                </label>
+                </p>
+            </div>
+
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('geographic_location', "Geographic location") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:geographic_location] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Geographic location' %>" class="ic-Input" type="text" name="user_profile[geographic_location]" value="<%= @user_data[:geographic_location] %>">
+                </label>
+              </p>
+            </div>
+
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('speciality_focus', "Speciality focus") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:speciality_focus] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Speciality focus' %>" class="ic-Input" type="text" name="user_profile[speciality_focus]" value="<%= @user_data[:speciality_focus] %>">
+                </label>
+              </p>
+            </div>
+
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('majore', "Major") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:major] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Major' %>" class="ic-Input" type="text" name="user_profile[major]" value="<%= @user_data[:major] %>">
+                </label>
+              </p>
+            </div>
+
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('racee', "Race") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:race] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Race' %>" class="ic-Input" type="text" name="user_profile[race]" value="<%= @user_data[:race] %>">
+                </label>
+              </p>
+            </div>
+
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('ethnicity', "Ethnicity") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:ethnicity] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Ethnicity' %>" class="ic-Input" type="text" name="user_profile[ethnicity]" value="<%= @user_data[:ethnicity] %>">
+                </label>
+              </p>
+            </div>
+
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('sexual_orientatione', "Sexual orientation") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:sexual_orientation] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Sexual orientation' %>" class="ic-Input" type="text" name="user_profile[sexual_orientation]" value="<%= @user_data[:sexual_orientation] %>">
+                </label>
+              </p>
+            </div>
+
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('first_generatione', "First generation") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:first_generation] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'First generation' %>" class="ic-Input" type="text" name="user_profile[first_generation]" value="<%= @user_data[:first_generation] %>">
+                </label>
+              </p>
+            </div>
+
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('second_generation', "Second generation") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:second_generation] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Second generation' %>" class="ic-Input" type="text" name="user_profile[second_generation]" value="<%= @user_data[:second_generation] %>">
+                </label>
+              </p>
+            </div>
+
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('gender', "Gender") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:gender] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Gender' %>" class="ic-Input" type="text" name="user_profile[gender]" value="<%= @user_data[:gender] %>">
+                </label>
+              </p>
+            </div>
+
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('disability_statuse', "Disability status") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:disability_status] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Disability status' %>" class="ic-Input" type="text" name="user_profile[disability_status]" value="<%= @user_data[:disability_status] %>">
+                </label>
+              </p>
+            </div>
+
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('income_status', "Income status") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:income_status] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Income status' %>" class="ic-Input" type="text" name="user_profile[income_status]" value="<%= @user_data[:income_status] %>">
+                </label>
+              </p>
+            </div>
+
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('immigration_status', "Immigration status") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:immigration_status] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Immigration status' %>" class="ic-Input" type="text" name="user_profile[immigration_status]" value="<%= @user_data[:immigration_status] %>">
+                </label>
+              </p>
+            </div>
+
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('areas_of_interest', "Areas of interest") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:areas_of_interest] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Areas of interest' %>" class="ic-Input" type="text" name="user_profile[areas_of_interest]" value="<%= @user_data[:areas_of_interest] %>">
+                </label>
+              </p>
+            </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('important_to_me', "Important To Me") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:important_to_me] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Important To Me' %>" class="ic-Input" type="text" name="user_profile[important_to_me]" value="<%= @user_data[:important_to_me] %>">
+                </label>
+              </p>
+            </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('about_me', "About Me") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:about_me] %></span>
+                <label class="show-if-editing ic-Label">
+                  <textarea class="ic_Input" id="about_me" name="user_profile[about_me]" aria-labelledby="profile_background_info_on_the_mentor_label"><%= @user_data[:about_me] %></textarea>
+                </label>
+              </p>
+            </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('professional_interests_experiences', "Professional Interests And Experiences") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:professional_interests_experiences] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Professional Interests And Experiences' %>" class="ic-Input" type="text" name="user_profile[professional_interests_experiences]" value="<%= @user_data[:professional_interests_experiences] %>">
+                </label>
+              </p>
+            </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('professional_goal', "Professional Goal") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:professional_goal] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Professional Goal' %>" class="ic-Input" type="text" name="user_profile[professional_goal]" value="<%= @user_data[:professional_goal] %>">
+                </label>
+              </p>
+            </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('permanent_address', "Parmanent Address") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:permanent_address] %></span>
+                <label class="show-if-editing ic-Label">
+                  <textarea class="ic_Input" id="permanent_address" name="user_profile[permanent_address]" aria-labelledby="profile_background_info_on_the_mentor_label"><%= @user_data[:permanent_address] %></textarea>
+                </label>
+              </p>
+            </div>
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('field_of_specialization', "Field of specialization") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:field_of_specialization] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Field of specialization' %>" class="ic-Input" type="text" name="user_profile[field_of_specialization]" value="<%= @user_data[:field_of_specialization] %>">
+                </label>
+              </p>
+            </div>
+
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('background_info_on_the_mentor', "Background info on the mentor") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:background_info_on_the_mentor] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Background info on the mentor' %>" class="ic-Input" type="text" name="user_profile[background_info_on_the_mentor]" value="<%= @user_data[:background_info_on_the_mentor] %>">
+                </label>
+              </p>
+            </div>
+
+            <div class="hide-if-editing">
+              <h3 class="profileHeader"><%= t('project_for_mentees', "Project for mentees") %></h3>
+              <p class="profileDetails">
+                <span class="hide-if-editing"><%= @user_data[:project_for_mentees] %></span>
+                <label class="show-if-editing ic-Label">
+                  <input aria-label="<%= t 'Project for mentees' %>" class="ic-Input" type="text" name="user_profile[project_for_mentees]" value="<%= @user_data[:project_for_mentees] %>">
+                </label>
+              </p>
+            </div>  
+        <% end %>  
       <% end %>
       <div class="hide-if-editing">
         <h3 class="profileHeader"><%= t :ways_to_contact_user, "Contact" %></h3>
