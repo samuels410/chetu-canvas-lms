@@ -295,7 +295,7 @@
       </div>
 
       <% if !@user_data[:can_edit_name] %>
-        <% if @user_data[:common_contexts].first[:roles].first == "Teacher" %>
+        <% if @user_data[:common_contexts].any? && @user_data[:common_contexts].first[:roles].first == "Teacher" %>
           <div class="hide-if-editing">
             <h3 class="profileHeader"><%= t('phone', "Phone") %></h3>
             <p class="profileDetails">
