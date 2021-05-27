@@ -34,6 +34,8 @@ module Api::V1::UserProfile
 
     json[:title] = profile.title
     json[:bio] = profile.bio
+    json[:first_name] = profile.first_name
+    json[:last_name] = profile.last_name
     json[:phone] = profile.phone
     json[:member_type] = profile.member_type
     json[:geographic_location] = profile.geographic_location
@@ -41,23 +43,21 @@ module Api::V1::UserProfile
     json[:major] = profile.major
     json[:race] = profile.race
     json[:ethnicity] = profile.ethnicity
-    json[:sexual_orientation] = profile.sexual_orientation
-    json[:first_generation] = profile.first_generation
-    json[:second_generation] = profile.second_generation
     json[:gender] = profile.gender
-    json[:disability_status] = profile.disability_status
     json[:income_status] = profile.income_status
-    json[:immigration_status] = profile.immigration_status
     json[:areas_of_interest] = profile.areas_of_interest
     json[:important_to_me] = profile.important_to_me
     json[:about_me] = profile.about_me
     json[:professional_interests_experiences] = profile.professional_interests_experiences
     json[:professional_goal] = profile.professional_goal
-    json[:permanent_address] = profile.permanent_address
-    json[:strength_weakness] = profile.strength_weakness
     json[:affiliation] = profile.affiliation
     json[:field_of_specialization] = profile.field_of_specialization
     json[:background_info_on_the_mentor] = profile.background_info_on_the_mentor
+    json[:mentor_project] = profile.mentor_project 
+    json[:mentor_first_name] = profile.mentor_first_name 
+    json[:mentor_last_name] = profile.mentor_last_name 
+    json[:mentor_email] = profile.mentor_email 
+    json[:mentor_phone] = profile.mentor_phone 
     json[:project_for_mentees] = profile.project_for_mentees
     json[:primary_email] = user.email if user.grants_right?(current_user, :read_email_addresses)
     json[:login_id] ||= user.primary_pseudonym.try(:unique_id)

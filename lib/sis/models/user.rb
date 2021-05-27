@@ -26,8 +26,7 @@ module SIS
                     :authentication_provider_id, :sis_batch_id, :existing_user_id,
                     :existing_integration_id, :existing_canvas_user_id, :root_account_id,
                     :phone, :member_type, :geographic_location, :speciality_focus, :major,
-                    :race, :ethnicity, :sexual_orientation, :first_generation, :second_generation,
-                    :gender, :disability_status, :income_status, :immigration_status, :areas_of_interest
+                    :race, :ethnicity, :gender, :areas_of_interest, :mentor_first_name, :mentor_last_name, :mentor_email, :mentor_phone, :mentor_project
 
       def initialize(user_id:, login_id:, status:, first_name: nil, last_name: nil,
                      email: nil, password: nil, ssha_password: nil, pronouns: nil,
@@ -36,9 +35,7 @@ module SIS
                      sis_batch_id: nil, lineno: nil, csv: nil, existing_user_id: nil,
                      existing_integration_id: nil, existing_canvas_user_id: nil,
                      root_account_id: nil, row: nil, phone: nil, member_type: nil, geographic_location: nil,
-                     speciality_focus: nil, major: nil, race: nil, ethnicity: nil, sexual_orientation: nil,
-                     first_generation: nil, second_generation: nil, gender: nil, disability_status: nil,
-                     income_status: nil, immigration_status: nil, areas_of_interest: nil)
+                     speciality_focus: nil, major: nil, race: nil, ethnicity: nil, gender: nil, areas_of_interest: nil, mentor_first_name: nil, mentor_last_name: nil, mentor_email: nil, mentor_phone: nil, mentor_project: nil)
         self.user_id = user_id
         self.login_id = login_id
         self.status = status
@@ -67,14 +64,13 @@ module SIS
         self.major = major
         self.race = race
         self.ethnicity = ethnicity
-        self.sexual_orientation = sexual_orientation
-        self.first_generation = first_generation
-        self.second_generation = second_generation
         self.gender = gender
-        self.disability_status = disability_status
-        self.income_status = income_status
-        self.immigration_status = immigration_status
         self.areas_of_interest = areas_of_interest
+        self.mentor_first_name = mentor_first_name
+        self.mentor_last_name = mentor_last_name
+        self.mentor_email = mentor_email
+        self.mentor_phone = mentor_phone
+        self.mentor_project = mentor_project
         self.row = row
       end
 

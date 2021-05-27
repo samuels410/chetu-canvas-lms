@@ -159,7 +159,7 @@ class ProfileController < ApplicationController
     @user ||= @current_user
     set_active_tab "profile"
     @context = @user.profile if @user == @current_user
-
+    
     @user_data = profile_data(
       @user.profile,
       @current_user,
@@ -434,11 +434,9 @@ class ProfileController < ApplicationController
     @user.short_name = short_name if short_name && @user.user_can_edit_name?
     if params[:user_profile]
       user_profile_params = params[:user_profile].permit(:title, :bio, :phone, :member_type,
-                                                         :geographic_location, :speciality_focus, :major, :race, :ethnicity,
-                                                         :sexual_orientation, :first_generation, :second_generation, :gender,
-                                                         :disability_status, :income_status, :immigration_status,
-                                                         :areas_of_interest, :field_of_specialization, :background_info_on_the_mentor,
-                                                         :project_for_mentees, :important_to_me, :about_me, :professional_interests_experiences, :professional_goal, :permanent_address, :strength_weakness, :affiliation)
+                                                         :geographic_location, :speciality_focus, :major, :race, :ethnicity, :first_name, :last_name,
+                                                         :gender, :areas_of_interest, :field_of_specialization, :background_info_on_the_mentor, :mentor_project, :mentor_first_name, :mentor_last_name, :mentor_email, :mentor_phone,
+                                                         :project_for_mentees, :important_to_me, :about_me, :professional_interests_experiences, :professional_goal, :affiliation, )
       user_profile_params.delete(:title) unless @user.user_can_edit_name?
       @profile.attributes = user_profile_params
     end

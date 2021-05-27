@@ -76,13 +76,12 @@ module SIS
           major: row['major'],
           race: row['race'],
           ethnicity: row['ethnicity'],
-          sexual_orientation: row['sexual_orientation'],
-          first_generation: row['first_generation'],
-          second_generation: row['second_generation'],
           gender: row['gender'],
-          disability_status: row['disability_status'],
-          income_status: row['income_status'],
-          immigration_status: row['immigration_status'],
+          mentor_first_name: row['mentor_first_name'],
+          mentor_last_name: row['mentor_last_name'],
+          mentor_email: row['mentor_email'],
+          mentor_phone: row['mentor_phone'],
+          mentor_project: row['mentor_project'],
           areas_of_interest: row['areas_of_interest'],
         )
       end

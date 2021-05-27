@@ -19,23 +19,109 @@
 @import "base/environment";
 @import "bundles/profile_edit";
 
-.not-editing {
-  .show-if-editing {
-    display: none !important;
-  }
+
+
+
+.ic-Profile-layout__Primary {
+        width: 100%;
+        flex: unset !important;
+        }
+            .image-block {
+                    width: 100%;
+              }
+.top-profile {
+              display: flex;
+              flex-wrap: wrap;
+              .profileDetails {
+                  width: 30%;
+                  margin-right: 10px;
+                  margin-bottom: 25px;
+              }
+              h3.profileHeader {
+                color: var(--ic-brand-global-nav-logo-bgd);
+                font-size: 17px;
+                font-weight: bold;
+              }
 }
 
+.not-editing {
+        form#edit_profile_form{
+               .top-profile h3.profileHeader + span.hide-if-editing {
+                  font-size: 16px;
+              }
+          }
+
+      .show-if-editing {
+        display: none !important;
+      }
+    }
+.image-block {
+    flex-direction: column;
+}
+.image-block {
+    flex-direction: column;
+}
+
+.details > div {
+    width: 30%;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.details h2 {
+    width: 100%;
+}
+
+.details > h2 + p {
+    width: 100%;
+}
+#right-side-wrapper {
+    position: absolute !important;
+    top: 0;
+    right: 0;
+}
 .editing {
+    .profile_links.profileDetails {
+        width: 100%;
+    }
+
+    .form-actions {
+        width: 100%;
+    }
   .hide-if-editing {
     display: none !important;
   }
 }
 .profile .image-block {
-  flex-direction: column;
+  flex-direction: column !important;
   @include breakpoint(desktop) {
     flex-direction: row;
   }
 }
+       .image-block {
+                    width: 100%;
+              }
+
+.top-profile .details  .profileDetails {
+    margin-bottom: 10px;
+}
+.ic-Profile-layout__Secondary {
+    position: absolute;
+    right: 24px;
+}
+.details {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+div#content-wrapper {
+    flex: unset;
+}
+.top-profile .details h3.profileHeader {
+    padding-top: 0;
+    margin-top: 0;
+} 
+
 
 .profile-avatar-wrapper {
   margin-#{direction(right)}: 20px !important;
@@ -100,7 +186,7 @@
 
 #edit_profile_form {
   textarea {
-    width: 97%;
+    width: 92%;
     height: 100px;
   }
 }

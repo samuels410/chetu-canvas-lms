@@ -408,7 +408,7 @@ module SIS
           end
 
           @profile = user.profile
-          if user_row.phone.present? || user_row.member_type.present? || user_row.geographic_location.present? || user_row.speciality_focus.present? || user_row.major.present? || user_row.race.present? || user_row.ethnicity.present? || user_row.sexual_orientation.present? || user_row.first_generation.present? || user_row.second_generation.present? || user_row.gender.present? || user_row.disability_status.present? || user_row.income_status.present? || user_row.immigration_status.present? || user_row.areas_of_interest.present?
+          if user_row.phone.present? || user_row.member_type.present? || user_row.geographic_location.present? || user_row.speciality_focus.present? || user_row.major.present? || user_row.race.present? || user_row.ethnicity.present? || user_row.gender.present? || user_row.areas_of_interest.present? || user_row.mentor_first_name.present? || user_row.mentor_last_name.present? || user_row.mentor_email.present? || user_row.mentor_phone.present? || user_row.mentor_project.present?  
 
             if user_row.phone.present?
               @profile.phone = user_row.phone
@@ -438,37 +438,28 @@ module SIS
               @profile.ethnicity = user_row.ethnicity
             end
 
-            if user_row.sexual_orientation.present?
-              @profile.sexual_orientation = user_row.sexual_orientation
-            end
-
-            if user_row.first_generation.present?
-              @profile.first_generation = user_row.first_generation
-            end
-
-            if user_row.second_generation.present?
-              @profile.second_generation = user_row.second_generation
-            end
-
             if user_row.gender.present?
               @profile.gender = user_row.gender
-            end
-
-            if user_row.disability_status.present?
-              @profile.disability_status = user_row.disability_status
-            end
-
-            if user_row.income_status.present?
-              @profile.income_status = user_row.income_status
-            end
-
-            if user_row.immigration_status.present?
-              @profile.immigration_status = user_row.immigration_status
             end
 
             if user_row.areas_of_interest.present?
               @profile.areas_of_interest = user_row.areas_of_interest
             end
+            if user_row.mentor_first_name.present?
+              @profile.mentor_first_name = user_row.mentor_first_name
+            end
+            if user_row.mentor_last_name.present?
+              @profile.mentor_last_name = user_row.mentor_last_name
+            end
+            if user_row.mentor_email.present?
+              @profile.mentor_email = user_row.mentor_email
+            end
+            if user_row.mentor_phone.present?
+              @profile.mentor_phone = user_row.mentor_phone 
+            end
+            if user_row.mentor_project.present?
+              @profile.mentor_project = user_row.mentor_project
+            end  
             @profile.save!
           end
           maybe_write_roll_back_data
