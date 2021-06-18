@@ -23,9 +23,9 @@
   js_env PROFILE: @user_data if @user_data[:can_edit]
   js_env(folder_id: @user.profile_pics_folder.id) if @user == @current_user
 %>
-<%= form_tag update_profile_profile_path, { :method => :put, :id => :edit_profile_form, :class => "ic-Form-control" } do %>
+<%= form_tag update_profile_profile_path, { :method => :put, :id => :edit_profile_form, :class => "ic-Form-control", :multipart => true } do %>
   
-
+    <% @documents = @user.profile.user_documents %>
     <div class="profileContent__Block">
       <div class="top-profile">
         <div class="image-block">
@@ -153,7 +153,7 @@
             <input aria-label="<%= t 'Important To Me' %>" class="ic-Input" type="text" name="user_profile[important_to_me]" value="<%= @user_data[:important_to_me] %>">
           </label>
         </div>
-        <div class="profileDetails">
+        <div class="profileDetails textwidth100">
           <h3 class="profileHeader"><%= t('about_me', "About Me") %></h3>
           <span class="hide-if-editing"><%= @user_data[:about_me] %></span>
           <label class="show-if-editing ic-Label">
@@ -189,7 +189,7 @@
           </label>
         </div>
 
-        <div class="profileDetails">
+        <div class="profileDetails textwidth100">
           <h3 class="profileHeader"><%= t('background_info_on_the_mentor', "Background Info on the Mentor") %></h3>
           <span class="hide-if-editing"><%= @user_data[:background_info_on_the_mentor] %></span>
           <label class="show-if-editing ic-Label">
@@ -207,8 +207,12 @@
           </label>
         </div>
         <%if @current_user.enrollments.present? && @current_user.enrollments.first[:type] == "StudentEnrollment"%>
+        <div class="sp-devide">
+         <div class="textwidth100">
+           <h4 class="sp-title">Mentor Information</h4>
+         </div>
           <div class="profileDetails">
-            <h3 class="profileHeader"><%= t('mentor_first_name', "Mentor's First Name") %></h3>
+            <h3 class="profileHeader"><%= t('mentor_first_name', "Mentor's First Name ") %></h3>
             <span class="hide-if-editing"><%= @user_data[:mentor_first_name] %></span>
             <label class="show-if-editing ic-Label">
               <input aria-label="<%= t 'Mentor First Name' %>" class="ic-Input" type="text" name="user_profile[mentor_first_name]" value="<%= @user_data[:mentor_first_name] %>">
@@ -235,13 +239,142 @@
               <input aria-label="<%= t 'Mentor Phone' %>" class="ic-Input" type="text" name="user_profile[mentor_phone]" value="<%= @user_data[:mentor_phone] %>">
             </label>
           </div>
-          <div class="profileDetails">
+          <div class="profileDetails textwidth100">
             <h3 class="profileHeader"><%= t('mentor_project', "Description of Mentor Project") %></h3>
-            <span class="hide-if-editing"><%= @user_data[:mentor_project] %></span>
+            <span class="hide-if-editing"><%= @user_data[:mentor_project] %></span></br>
+            <h3 class="profileHeader hide-if-editing"><%= t('mentor_project', "Attachments") %></h3>
+            <% if @documents.present? %>
+              <% @documents.where(mentor_serial_no:1).each do |doc|%>
+                <span class="hide-if-editing"><%= doc.file_file_name %></span>
+                <span class="hide-if-editing"><%= link_to "Download", doc.file.url(:original, false) %></br></span>
+              <%end%>
+            <% end %>
             <label class="show-if-editing ic-Label">
-              <textarea class="ic_Input" id="mentor_project" name="user_profile[mentor_project]" aria-labelledby="mentor_project_label"><%= @user_data[:mentor_project] %></textarea>
+              <textarea class="ic_Input" id="mentor_project" name="user_profile[mentor_project]" aria-labelledby="Description of Mentor Project"><%= @user_data[:mentor_project] %></textarea><br>
+              <h3 class="profileHeader"><%= t('mentor_project', "Attachments") %></h3>
+              <h5 >(Only pdf, doc, text, csv files accepted)</h5>
+              <%= file_field_tag('attachment[files][1][]', multiple: true)%></br>
+              <% if @documents.present? %>
+                <% @documents.where(mentor_serial_no:1).each do |doc|%>
+                  <span id= "span_<%= doc.id %>"><%= doc.file_file_name %></span>
+                  <a  id= "delete_<%= doc.id %>" onclick="analyze(<%= doc.id %>);">delete</a>  </br>
+                <%end%>
+              <% end %>
             </label>
           </div>
+        </div>
+        <div class="sp-devide">
+         <div class="textwidth100">
+           <h4 class="sp-title">Mentor 2 Information</h4>
+         </div>
+          <div class="profileDetails">
+            <h3 class="profileHeader"><%= t('mentor_first_name_2', "Mentor's First Name ") %></h3>
+            <span class="hide-if-editing"><%= @user_data[:mentor_first_name_2] %></span>
+            <label class="show-if-editing ic-Label">
+              <input aria-label="<%= t 'Mentor First Name' %>" class="ic-Input" type="text" name="user_profile[mentor_first_name_2]" value="<%= @user_data[:mentor_first_name_2] %>">
+            </label>
+          </div>
+          <div class="profileDetails">
+            <h3 class="profileHeader"><%= t('mentor_last_name_2', "Mentor's Last Name") %></h3>
+            <span class="hide-if-editing"><%= @user_data[:mentor_last_name_2] %></span>
+            <label class="show-if-editing ic-Label">
+              <input aria-label="<%= t 'Mentor Last Name' %>" class="ic-Input" type="text" name="user_profile[mentor_last_name_2]" value="<%= @user_data[:mentor_last_name_2] %>">
+            </label>
+          </div>
+          <div class="profileDetails">
+            <h3 class="profileHeader"><%= t('mentor_email_2', "Mentor's Email") %></h3>
+            <span class="hide-if-editing"><%= @user_data[:mentor_email_2] %></span>
+            <label class="show-if-editing ic-Label">
+              <input aria-label="<%= t 'Mentor Email' %>" class="ic-Input" type="text" name="user_profile[mentor_email_2]" value="<%= @user_data[:mentor_email_2] %>">
+            </label>
+          </div>
+          <div class="profileDetails">
+            <h3 class="profileHeader"><%= t('mentor_phone_2', "Mentor's Phone") %></h3>
+            <span class="hide-if-editing"><%= @user_data[:mentor_phone_2] %></span>
+            <label class="show-if-editing ic-Label">
+              <input aria-label="<%= t 'Mentor Phone' %>" class="ic-Input" type="text" name="user_profile[mentor_phone_2]" value="<%= @user_data[:mentor_phone_2] %>">
+            </label>
+          </div>
+          <div class="profileDetails textwidth100">
+            <h3 class="profileHeader"><%= t('mentor_project_2', "Description of Mentor Project") %></h3>
+            <span class="hide-if-editing"><%= @user_data[:mentor_project_2] %></span></br>
+            <h3 class="profileHeader hide-if-editing"><%= t('mentor_project', "Attachments") %></h3>
+            <% if @documents.present? %>
+              <% @documents.where(mentor_serial_no:2).each do |doc|%>
+                <span class="hide-if-editing"><%= doc.file_file_name %></span>
+                <span class="hide-if-editing"><%= link_to "Download", doc.file.url(:original, false) %></br></span>
+              <%end%>
+            <% end %>
+            <label class="show-if-editing ic-Label">
+              <textarea class="ic_Input" id="mentor_project_2" name="user_profile[mentor_project_2]" aria-labelledby="Description of Mentor Project"><%= @user_data[:mentor_project_2] %></textarea>
+              <h3 class="profileHeader"><%= t('mentor_project', "Attachments") %></h3>
+              <h5 >(Only pdf, doc, text, csv files accepted)</h5>
+              <%= file_field_tag('attachment[files][2][]', multiple: true)%></br>
+              <% if @documents.present? %>
+                <% @documents.where(mentor_serial_no:2).each do |doc|%>
+                  <span id= "span_<%= doc.id %>"><%= doc.file_file_name %></span>
+                  <a  id= "delete_<%= doc.id %>" onclick="analyze(<%= doc.id %>);">delete</a>  </br>
+                <%end%>
+              <% end %>
+            </label>
+          </div>
+        </div>
+        <div class="sp-devide">
+         <div class="textwidth100">
+           <h4 class="sp-title">Mentor 3 Information</h4>
+         </div>
+          <div class="profileDetails">
+            <h3 class="profileHeader"><%= t('mentor_first_name_3', "Mentor's First Name ") %></h3>
+            <span class="hide-if-editing"><%= @user_data[:mentor_first_name_3] %></span>
+            <label class="show-if-editing ic-Label">
+              <input aria-label="<%= t 'Mentor First Name' %>" class="ic-Input" type="text" name="user_profile[mentor_first_name_3]" value="<%= @user_data[:mentor_first_name_3] %>">
+            </label>
+          </div>
+          <div class="profileDetails">
+            <h3 class="profileHeader"><%= t('mentor_last_name_3', "Mentor's Last Name") %></h3>
+            <span class="hide-if-editing"><%= @user_data[:mentor_last_name_3] %></span>
+            <label class="show-if-editing ic-Label">
+              <input aria-label="<%= t 'Mentor Last Name' %>" class="ic-Input" type="text" name="user_profile[mentor_last_name_3]" value="<%= @user_data[:mentor_last_name_3] %>">
+            </label>
+          </div>
+          <div class="profileDetails">
+            <h3 class="profileHeader"><%= t('mentor_email_3', "Mentor's Email") %></h3>
+            <span class="hide-if-editing"><%= @user_data[:mentor_email_3] %></span>
+            <label class="show-if-editing ic-Label">
+              <input aria-label="<%= t 'Mentor Email' %>" class="ic-Input" type="text" name="user_profile[mentor_email_3]" value="<%= @user_data[:mentor_email_3] %>">
+            </label>
+          </div>
+          <div class="profileDetails">
+            <h3 class="profileHeader"><%= t('mentor_phone_3', "Mentor's Phone") %></h3>
+            <span class="hide-if-editing"><%= @user_data[:mentor_phone_3] %></span>
+            <label class="show-if-editing ic-Label">
+              <input aria-label="<%= t 'Mentor Phone' %>" class="ic-Input" type="text" name="user_profile[mentor_phone_3]" value="<%= @user_data[:mentor_phone_3] %>">
+            </label>
+          </div>
+          <div class="profileDetails textwidth100">
+            <h3 class="profileHeader"><%= t('mentor_project_3', "Description of Mentor Project") %></h3>
+            <span class="hide-if-editing"><%= @user_data[:mentor_project_3] %></span></br>
+            <h3 class="profileHeader hide-if-editing"><%= t('mentor_project', "Attachments") %></h3>
+            <% if @documents.present? %>
+              <% @documents.where(mentor_serial_no:3).each do |doc|%>
+                <span class="hide-if-editing"><%= doc.file_file_name %></span>
+                <span class="hide-if-editing"><%= link_to "Download", doc.file.url(:original, false) %></br></span>
+              <%end%>
+            <% end %>
+            <label class="show-if-editing ic-Label">
+              <textarea class="ic_Input" id="mentor_project_3" name="user_profile[mentor_project_3]" aria-labelledby="Description of Mentor Project"><%= @user_data[:mentor_project_3] %></textarea>
+              <h3 class="profileHeader"><%= t('mentor_project', "Attachments") %></h3>
+              <h5 >(Only pdf, doc, text, csv files accepted)</h5>
+              <%= file_field_tag('attachment[files][3][]', multiple: true)%></br>
+              <% if @documents.present? %>
+                <% @documents.where(mentor_serial_no:3).each do |doc|%>
+                  <span id= "span_<%= doc.id %>"><%= doc.file_file_name %></span>
+                  <a  id= "delete_<%= doc.id %>" onclick="analyze(<%= doc.id %>);">delete</a></br>
+                <%end%>
+              <% end %>              
+            </label>
+          </div>
+        </div>
         <%end%>
     <% else %>
         <h2><%= @user_data[:short_name] %> <% if @user_data[:pronouns] %><i>(<%= @user_data[:pronouns] %>)</i><% end %></h2>
@@ -420,7 +553,7 @@
               </label>
             </div>
           </div>
-          <div class="hide-if-editing">
+          <div class="hide-if-editing textwidth100">
             <h3 class="profileHeader"><%= t('about_me', "About Me") %></h3>
             <div class="profileDetails">
               <span class="hide-if-editing"><%= @user_data[:about_me] %></span>
@@ -457,7 +590,7 @@
             </div>
           </div>
 
-          <div class="hide-if-editing">
+          <div class="hide-if-editing textwidth100">
             <h3 class="profileHeader"><%= t('background_info_on_the_mentor', "Background Info on the Mentor") %></h3>
             <div class="profileDetails">
               <span class="hide-if-editing"><%= @user_data[:background_info_on_the_mentor] %></span>
@@ -466,7 +599,7 @@
               </label>
             </div>
           </div>
-
+     
           <div class="hide-if-editing">
             <h3 class="profileHeader"><%= t('project_for_mentees', "Project for Mentees") %></h3>
             <div class="profileDetails">
@@ -476,41 +609,144 @@
               </label>
             </div>
           </div>
-          <div class="profileDetails">
-            <h3 class="profileHeader"><%= t('mentor_project', "Description of Mentor Project") %></h3>
-            <span class="hide-if-editing"><%= @user_data[:mentor_project] %></span>
-            <label class="show-if-editing ic-Label">
-              <textarea class="ic_Input" id="mentor_project" name="user_profile[mentor_project]" aria-labelledby="profile_background_info_on_the_mentor_label"><%= @user_data[:mentor_project] %></textarea>
-            </label>
-          </div>
-          <div class="profileDetails">
-            <h3 class="profileHeader"><%= t('mentor_first_name', "Mentor's First Name") %></h3>
-            <span class="hide-if-editing"><%= @user_data[:mentor_first_name] %></span>
-            <label class="show-if-editing ic-Label">
-              <%= @user_data[:mentor_first_name] %>
-            </label>
-          </div>
-          <div class="profileDetails">
-            <h3 class="profileHeader"><%= t('mentor_last_name', "Mentor's Last Name") %></h3>
-            <span class="hide-if-editing"><%= @user_data[:mentor_last_name] %></span>
-            <label class="show-if-editing ic-Label">
-              <%= @user_data[:mentor_last_name] %>
-            </label>
-          </div>
-          <div class="profileDetails">
-            <h3 class="profileHeader"><%= t('mentor_email', "Mentor's Email") %></h3>
-            <span class="hide-if-editing"><%= @user_data[:mentor_email] %></span>
-            <label class="show-if-editing ic-Label">
-              <%= @user_data[:mentor_email] %>
-            </label>
-          </div>
-          <div class="profileDetails">
-            <h3 class="profileHeader"><%= t('mentor_phone', "Mentor's Phone") %></h3>
-            <span class="hide-if-editing"><%= @user_data[:mentor_phone] %></span>
-            <label class="show-if-editing ic-Label">
-              <%= @user_data[:mentor_phone] %>
-            </label>
-          </div>
+          <% if @user_data[:mentor_first_name].present? || @user_data[:mentor_last_name].present? || @user_data[:mentor_email].present? || @user_data[:mentor_phone].present? ||  @user_data[:mentor_project].present? %>
+            <div class="sp-devide">
+              <div class="textwidth100">
+                <h4 class="sp-title">Mentor Information</h4>
+              </div>
+              <div class="profileDetails">
+                <h3 class="profileHeader"><%= t('mentor_first_name', "Mentor's First Name ") %></h3>
+                <span class="hide-if-editing"><%= @user_data[:mentor_first_name] %></span>
+                <label class="show-if-editing ic-Label">
+                  <%= @user_data[:mentor_first_name] %>
+                </label>
+              </div>
+              <div class="profileDetails">
+                <h3 class="profileHeader"><%= t('mentor_last_name', "Mentor's Last Name") %></h3>
+                <span class="hide-if-editing"><%= @user_data[:mentor_last_name] %></span>
+                <label class="show-if-editing ic-Label">
+                  <%= @user_data[:mentor_last_name] %>
+                </label>
+              </div>
+              <div class="profileDetails">
+                <h3 class="profileHeader"><%= t('mentor_email', "Mentor's Email") %></h3>
+                <span class="hide-if-editing"><%= @user_data[:mentor_email] %></span>
+                <label class="show-if-editing ic-Label">
+                  <%= @user_data[:mentor_email] %>
+                </label>
+              </div>
+              <div class="profileDetails">
+                <h3 class="profileHeader"><%= t('mentor_phone', "Mentor's Phone") %></h3>
+                <span class="hide-if-editing"><%= @user_data[:mentor_phone] %></span>
+                <label class="show-if-editing ic-Label">
+                  <%= @user_data[:mentor_phone] %>
+                </label>
+              </div>
+              <div class="profileDetails textwidth100">
+                <h3 class="profileHeader"><%= t('mentor_project', "Description of Mentor Project") %></h3>
+                <span class="hide-if-editing"><%= @user_data[:mentor_project] %></span><br>
+                <h3 class="profileHeader hide-if-editing"><%= t('mentor_project', "Attachments") %></h3>
+                <% if @documents.present? %>
+                  <% @documents.where(mentor_serial_no:1).each do |doc|%>
+                    <span class="hide-if-editing"><%= doc.file_file_name %></span>
+                    <span class="hide-if-editing"><%= link_to "Download", doc.file.url(:original, false) %></br></span>
+                  <%end%>
+                <% end %>
+              </div>
+            </div>
+          <%end%>
+          <% if @user_data[:mentor_first_name_2].present? || @user_data[:mentor_last_name_2].present? || @user_data[:mentor_email_2].present? || @user_data[:mentor_phone_2].present? ||  @user_data[:mentor_project_2].present? %>  
+            <div class="sp-devide">
+              <div class="textwidth100">
+                <h4 class="sp-title">Mentor 2 Information</h4>
+              </div>
+              <div class="profileDetails">
+                <h3 class="profileHeader"><%= t('mentor_first_name_2', "Mentor's First Name ") %></h3>
+                <span class="hide-if-editing"><%= @user_data[:mentor_first_name_2] %></span>
+                <label class="show-if-editing ic-Label">
+                  <%= @user_data[:mentor_first_name_2] %>
+                </label>
+              </div>
+              <div class="profileDetails">
+                <h3 class="profileHeader"><%= t('mentor_last_name_2', "Mentor's Last Name") %></h3>
+                <span class="hide-if-editing"><%= @user_data[:mentor_last_name_2] %></span>
+                <label class="show-if-editing ic-Label">
+                  <%= @user_data[:mentor_last_name_2] %>
+                </label>
+              </div>
+              <div class="profileDetails">
+                <h3 class="profileHeader"><%= t('mentor_email_2', "Mentor's Email") %></h3>
+                <span class="hide-if-editing"><%= @user_data[:mentor_email_2] %></span>
+                <label class="show-if-editing ic-Label">
+                  <%= @user_data[:mentor_email_2] %>
+                </label>
+              </div>
+              <div class="profileDetails">
+                <h3 class="profileHeader"><%= t('mentor_phone_2', "Mentor's Phone") %></h3>
+                <span class="hide-if-editing"><%= @user_data[:mentor_phone_2] %></span>
+                <label class="show-if-editing ic-Label">
+                  <%= @user_data[:mentor_phone_2] %>
+                </label>
+              </div>
+              <div class="profileDetails textwidth100">
+                <h3 class="profileHeader"><%= t('mentor_project_2', "Description of Mentor Project") %></h3>
+                <span class="hide-if-editing"><%= @user_data[:mentor_project_2] %></span><br>
+                <h3 class="profileHeader hide-if-editing"><%= t('mentor_project_2', "Attachments") %></h3>
+                <% if @documents.present? %>
+                  <% @documents.where(mentor_serial_no:2).each do |doc|%>
+                    <span class="hide-if-editing"><%= doc.file_file_name %></span>
+                    <span class="hide-if-editing"><%= link_to "Download", doc.file.url(:original, false) %></br></span>
+                  <%end%>
+                <% end %>
+              </div>
+            </div>
+          <%end%>
+          <% if @user_data[:mentor_first_name_3].present? || @user_data[:mentor_last_name_3].present? || @user_data[:mentor_email_3].present? || @user_data[:mentor_phone_3].present? ||  @user_data[:mentor_project_3].present? %>
+            <div class="sp-devide">
+              <div class="textwidth100">
+                <h4 class="sp-title">Mentor 3 Information</h4>
+              </div>
+              <div class="profileDetails">
+                <h3 class="profileHeader"><%= t('mentor_first_name_3', "Mentor's First Name ") %></h3>
+                <span class="hide-if-editing"><%= @user_data[:mentor_first_name_3] %></span>
+                <label class="show-if-editing ic-Label">
+                  <%= @user_data[:mentor_first_name_3] %>
+                </label>
+              </div>
+              <div class="profileDetails">
+                <h3 class="profileHeader"><%= t('mentor_last_name_3', "Mentor's Last Name") %></h3>
+                <span class="hide-if-editing"><%= @user_data[:mentor_last_name_3] %></span>
+                <label class="show-if-editing ic-Label">
+                  <%= @user_data[:mentor_last_name_3] %>
+                </label>
+              </div>
+              <div class="profileDetails">
+                <h3 class="profileHeader"><%= t('mentor_email_3', "Mentor's Email") %></h3>
+                <span class="hide-if-editing"><%= @user_data[:mentor_email_3] %></span>
+                <label class="show-if-editing ic-Label">
+                  <%= @user_data[:mentor_email_3] %>
+                </label>
+              </div>
+              <div class="profileDetails">
+                <h3 class="profileHeader"><%= t('mentor_phone_3', "Mentor's Phone") %></h3>
+                <span class="hide-if-editing"><%= @user_data[:mentor_phone_3] %></span>
+                <label class="show-if-editing ic-Label">
+                  <%= @user_data[:mentor_phone_3] %>
+                </label>
+              </div>
+              <div class="profileDetails textwidth100">
+                <h3 class="profileHeader"><%= t('mentor_project_3', "Description of Mentor Project") %></h3>
+                <span class="hide-if-editing"><%= @user_data[:mentor_project_3] %></span><br>
+                <h3 class="profileHeader hide-if-editing"><%= t('mentor_project_3', "Attachments") %></h3>
+                <% if @documents.present? %>
+                  <% @documents.where(mentor_serial_no:3).each do |doc|%>
+                    <span class="hide-if-editing"><%= doc.file_file_name %></span>
+                    <span class="hide-if-editing"><%= link_to "Download", doc.file.url(:original, false) %></br></span>
+                  <%end%>
+                <% end %>
+              </div>
+            </div>
+          <%end%>
         <% end %>
       <% end %>
       <div class="hide-if-editing profileDetails">
@@ -540,7 +776,7 @@
         <% end %>
       </div>
 
-      <div class="profileDetails">
+      <div class="profileDetails textwidth100">
         <h3 id="profile_bio_label" class="profileHeader"><%= t :bio, "Biography" %></h3>
         <% if @user_data[:bio] %>
           <div class="hide-if-editing"><%= raw format_message(@user_data[:bio]).first %></div>
@@ -613,3 +849,19 @@
     </div>
   </div>
 <% end %>
+
+<script>
+
+function analyze(id) {
+   $.ajax({
+    url: '/profile/delete_file/id',
+    type: 'DELETE',
+    data: { file_id : id },
+    success: function(result) {
+       $("#span_"+id).remove();
+       $("#delete_"+id).remove();
+    }
+  });
+}
+</script>
+ 

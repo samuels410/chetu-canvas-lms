@@ -874,6 +874,7 @@ CanvasRails::Application.routes.draw do
     get 'qr_mobile_login' => 'profile#qr_mobile_login', as: :qr_mobile_login
     delete 'user_services/:id' => 'users#delete_user_service', as: :profile_user_service
     post 'user_services' => 'users#create_user_service', as: :profile_create_user_service
+    delete 'delete_file/:id' => 'profile#delete_file', as: :profile_delete_file
   end
 
   get 'about/:id' => 'profile#show', as: :user_profile

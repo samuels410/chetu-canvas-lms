@@ -408,7 +408,8 @@ module SIS
           end
 
           @profile = user.profile
-          if user_row.phone.present? || user_row.member_type.present? || user_row.geographic_location.present? || user_row.speciality_focus.present? || user_row.major.present? || user_row.race.present? || user_row.ethnicity.present? || user_row.gender.present? || user_row.areas_of_interest.present? || user_row.mentor_first_name.present? || user_row.mentor_last_name.present? || user_row.mentor_email.present? || user_row.mentor_phone.present? || user_row.mentor_project.present?  
+          if user_row.phone.present? || user_row.member_type.present? || user_row.geographic_location.present? || user_row.speciality_focus.present? || user_row.major.present? || user_row.race.present? || user_row.ethnicity.present? || user_row.gender.present? || user_row.areas_of_interest.present? || user_row.mentor_first_name.present? || user_row.mentor_last_name.present? || user_row.mentor_email.present? || user_row.mentor_phone.present? || user_row.mentor_project.present? ||
+           user_row.mentor_first_name_2.present? || user_row.mentor_last_name_2.present? || user_row.mentor_email_2.present? || user_row.mentor_phone_2.present? || user_row.mentor_project_2.present? || user_row.mentor_first_name_3.present? || user_row.mentor_last_name_3.present? || user_row.mentor_email_3.present? || user_row.mentor_phone_3.present? || user_row.mentor_project_3.present? 
 
             if user_row.phone.present?
               @profile.phone = user_row.phone
@@ -460,6 +461,36 @@ module SIS
             if user_row.mentor_project.present?
               @profile.mentor_project = user_row.mentor_project
             end  
+            if user_row.mentor_first_name_2.present?
+              @profile.mentor_first_name_2 = user_row.mentor_first_name_2
+            end
+            if user_row.mentor_last_name_2.present?
+              @profile.mentor_last_name_2 = user_row.mentor_last_name_2
+            end
+            if user_row.mentor_email_2.present?
+              @profile.mentor_email_2 = user_row.mentor_email_2
+            end
+            if user_row.mentor_phone_2.present?
+              @profile.mentor_phone_2 = user_row.mentor_phone_2
+            end
+            if user_row.mentor_project_2.present?
+              @profile.mentor_project_2 = user_row.mentor_project_2
+            end
+            if user_row.mentor_first_name_3.present?
+              @profile.mentor_first_name_3 = user_row.mentor_first_name_3
+            end
+            if user_row.mentor_last_name_3.present?
+              @profile.mentor_last_name_3 = user_row.mentor_last_name_3
+            end
+            if user_row.mentor_email_3.present?
+              @profile.mentor_email_3 = user_row.mentor_email_3
+            end
+            if user_row.mentor_phone_3.present?
+              @profile.mentor_phone_3 = user_row.mentor_phone_3
+            end
+            if user_row.mentor_project_3.present?
+              @profile.mentor_project_3 = user_row.mentor_project_3
+            end
             @profile.save!
           end
           maybe_write_roll_back_data

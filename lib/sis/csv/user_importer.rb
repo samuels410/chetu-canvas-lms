@@ -82,6 +82,16 @@ module SIS
           mentor_email: row['mentor_email'],
           mentor_phone: row['mentor_phone'],
           mentor_project: row['mentor_project'],
+          mentor_first_name_2: row['mentor_first_name_2'],
+          mentor_last_name_2: row['mentor_last_name_2'],
+          mentor_email_2: row['mentor_email_2'],
+          mentor_phone_2: row['mentor_phone_2'],
+          mentor_project_2: row['mentor_project_2'],
+          mentor_first_name_3: row['mentor_first_name_3'],
+          mentor_last_name_3: row['mentor_last_name_3'],
+          mentor_email_3: row['mentor_email_3'],
+          mentor_phone_3: row['mentor_phone_3'],
+          mentor_project_3: row['mentor_project_3'],
           areas_of_interest: row['areas_of_interest'],
         )
       end

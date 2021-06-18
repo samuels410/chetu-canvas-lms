@@ -117,10 +117,7 @@
 div#content-wrapper {
     flex: unset;
 }
-.top-profile .details h3.profileHeader {
-    padding-top: 0;
-    margin-top: 0;
-} 
+
 
 
 .profile-avatar-wrapper {
@@ -330,4 +327,40 @@ div#content-wrapper {
 .ic-Profile-layout__Secondary {
   flex: 1;
   text-align: direction(right);
+}
+.ic-app-main-content .ic-Profile-layout .textwidth100 {
+  width:100%;
+}
+.ic-app-main-content .details .textwidth100 {
+  width:100%;
+}
+.ic-app-main-content .top-profile .textwidth100 {
+  width:100%;
+}
+.sp-devide {
+  display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+        border-bottom: 1px solid #a2a2a2;
+}
+
+.sp-devide .profileDetails {
+    width: 30%;
+        margin-bottom: 25px !important;
+}
+.sp-title {
+      font-size: 26px;
+      border-bottom: 1px solid #a2a2a2;
+ 
+    padding-bottom: 10px;
+}
+.details > div.sp-devide {
+   display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+        border-bottom: 1px solid #a2a2a2;
+}
+
+.top-profile .textwidth100  .profileDetails {
+   width: 100%;
 }

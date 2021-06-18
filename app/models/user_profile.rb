@@ -20,7 +20,7 @@
 
 class UserProfile < ActiveRecord::Base
   belongs_to :user
-
+  has_many :user_documents, :dependent => :destroy
   delegate :short_name, :name, :asset_string, :opaque_identifier, to: :user
 
   has_many :links, inverse_of: :user_profile, class_name: 'UserProfileLink', dependent: :destroy

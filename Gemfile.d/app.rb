@@ -25,6 +25,7 @@ else
   gem 'rails', '6.0.3.5'
 end
 
+gem 'paperclip', '~> 6.1'
 gem 'academic_benchmarks', '1.1.0', require: false
 gem 'active_model-better_errors', '1.6.7', require: 'active_model/better_errors'
 gem 'active_model_serializers', '0.9.0alpha1',

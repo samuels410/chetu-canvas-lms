@@ -164,9 +164,8 @@ class ProfileController < ApplicationController
       @user.profile,
       @current_user,
       session,
-      ['links', 'user_services']
+      ['links', 'user_services', 'user_documents']
     )
-
     if @user_data[:known_user] # if you can message them, you can see the profile
       js_env :enable_gravatar => @domain_root_account&.enable_gravatar?
       add_crumb(t('crumbs.settings_frd', "%{user}'s Profile", :user => @user.short_name), user_profile_path(@user))
@@ -416,6 +415,13 @@ class ProfileController < ApplicationController
     end
   end
 
+  def delete_file
+    file = UserDocument.where(id:params[:file_id]).first
+    file.delete
+      respond_to do |format|
+        format.json { render :json => {msg:"successfully deleted"}  }
+      end
+  end
   # TODO: the current update method needs to get moved to the UsersController
   # (since it is not concerned with profiles), then this should get renamed
   #
@@ -435,7 +441,7 @@ class ProfileController < ApplicationController
     if params[:user_profile]
       user_profile_params = params[:user_profile].permit(:title, :bio, :phone, :member_type,
                                                          :geographic_location, :speciality_focus, :major, :race, :ethnicity, :first_name, :last_name,
-                                                         :gender, :areas_of_interest, :field_of_specialization, :background_info_on_the_mentor, :mentor_project, :mentor_first_name, :mentor_last_name, :mentor_email, :mentor_phone,
+                                                         :gender, :areas_of_interest, :field_of_specialization, :background_info_on_the_mentor, :mentor_project, :mentor_first_name, :mentor_last_name, :mentor_email, :mentor_phone, :mentor_project_2, :mentor_first_name_2, :mentor_last_name_2, :mentor_email_2, :mentor_phone_2, :mentor_project_3 ,:mentor_first_name_3, :mentor_last_name_3, :mentor_email_3, :mentor_phone_3,
                                                          :project_for_mentees, :important_to_me, :about_me, :professional_interests_experiences, :professional_goal, :affiliation, )
       user_profile_params.delete(:title) unless @user.user_can_edit_name?
       @profile.attributes = user_profile_params
@@ -459,6 +465,16 @@ class ProfileController < ApplicationController
     if @user.valid? && @profile.valid?
       @user.save!
       @profile.save!
+
+      if params[:attachment].present?
+        params[:attachment][:files].each do |mentor_file|
+          mentor_file.last.each do |file|
+            files = @profile.user_documents.new(file:file)
+            files.mentor_serial_no = mentor_file.first
+            files.save
+          end
+        end
+      end
 
       if params[:user_services]
         visible, invisible = params[:user_services].to_unsafe_h.partition { |service,bool|
@@ -540,4 +556,5 @@ end
 def instructure_misc_plugin_available?
   Object.const_defined?("InstructureMiscPlugin")
 end
+
 private :instructure_misc_plugin_available?
