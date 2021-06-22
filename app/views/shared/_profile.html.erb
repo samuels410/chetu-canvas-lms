@@ -253,7 +253,7 @@
               <textarea class="ic_Input" id="mentor_project" name="user_profile[mentor_project]" aria-labelledby="Description of Mentor Project"><%= @user_data[:mentor_project] %></textarea><br>
               <h3 class="profileHeader"><%= t('mentor_project', "Attachments") %></h3>
               <h5 >(Only pdf, doc, text, csv files accepted)</h5>
-              <%= file_field_tag('attachment[files][1][]', multiple: true)%></br>
+              <%= file_field_tag('attachment[files][1][]', multiple: true, accept:".pdf,.doc,.csv,.docx,.txt")%></br>
               <% if @documents.present? %>
                 <% @documents.where(mentor_serial_no:1).each do |doc|%>
                   <span id= "span_<%= doc.id %>"><%= doc.file_file_name %></span>
@@ -309,7 +309,7 @@
               <textarea class="ic_Input" id="mentor_project_2" name="user_profile[mentor_project_2]" aria-labelledby="Description of Mentor Project"><%= @user_data[:mentor_project_2] %></textarea>
               <h3 class="profileHeader"><%= t('mentor_project', "Attachments") %></h3>
               <h5 >(Only pdf, doc, text, csv files accepted)</h5>
-              <%= file_field_tag('attachment[files][2][]', multiple: true)%></br>
+              <%= file_field_tag('attachment[files][2][]', multiple: true, accept:".pdf,.doc,.csv,.docx,.txt")%></br>
               <% if @documents.present? %>
                 <% @documents.where(mentor_serial_no:2).each do |doc|%>
                   <span id= "span_<%= doc.id %>"><%= doc.file_file_name %></span>
@@ -365,7 +365,7 @@
               <textarea class="ic_Input" id="mentor_project_3" name="user_profile[mentor_project_3]" aria-labelledby="Description of Mentor Project"><%= @user_data[:mentor_project_3] %></textarea>
               <h3 class="profileHeader"><%= t('mentor_project', "Attachments") %></h3>
               <h5 >(Only pdf, doc, text, csv files accepted)</h5>
-              <%= file_field_tag('attachment[files][3][]', multiple: true)%></br>
+              <%= file_field_tag('attachment[files][3][]', multiple: true, accept:".pdf,.doc,.csv,.docx,.txt")%></br>
               <% if @documents.present? %>
                 <% @documents.where(mentor_serial_no:3).each do |doc|%>
                   <span id= "span_<%= doc.id %>"><%= doc.file_file_name %></span>
